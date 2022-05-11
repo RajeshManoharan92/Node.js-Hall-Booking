@@ -10,6 +10,8 @@ module.exports = {
             const client = await MongoClient.connect('mongodb+srv://Rajesh:3VXKLHCcNW7kfv1A@cluster0.lttct.mongodb.net?retryWrites=true&w=majority');
             this.selectedDb = client.db('book-room');
          console.log(this.selectedDb)
+
+
         }
         catch (err) {
             console.log(err)
