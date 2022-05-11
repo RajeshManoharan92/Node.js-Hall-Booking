@@ -7,7 +7,7 @@ const mongo = require('../shared');
 module.exports.getroomdetails = async (req, res, next) => {
     try {
 
-        const data = await mongo.selectedDb.collection("room-Details").aggregate([
+        const data = await mongo.selectedDb.collection("Room").aggregate([
 
             {
                 $project: {
@@ -36,7 +36,7 @@ module.exports.getroomdetails = async (req, res, next) => {
 module.exports.postcustomerdetails = async (req, res, next) => {
     try {
 
-        const data = await mongo.selectedDb.collection("booking-details").insertOne(req.body);
+        const data = await mongo.selectedDb.collection("Book").insertOne(req.body);
 
         res.send(data);
     }
@@ -49,7 +49,7 @@ module.exports.postcustomerdetails = async (req, res, next) => {
 module.exports.updatecustomerdetails = async (req, res, next) => {
     try {
 
-        const response = await mongo.selectedDb.collection('booking-details').updateOne(
+        const response = await mongo.selectedDb.collection('Book').updateOne(
             { _id: ObjectId(req.params.id) },
             { $set: { ...req.body } }
         )
@@ -65,7 +65,7 @@ module.exports.updatecustomerdetails = async (req, res, next) => {
 module.exports.deletecustomerdetails = async (req, res, next) => {
     try {
 
-        const response = await mongo.selectedDb.collection('booking-details').remove(
+        const response = await mongo.selectedDb.collection('Book').remove(
             { _id: ObjectId(req.params.id) }
 
         )
@@ -81,13 +81,13 @@ module.exports.deletecustomerdetails = async (req, res, next) => {
 
 module.exports.getbookingstatus = async (req, res, next) => {
     try {
-        const response = await mongo.selectedDb.collection('booking-status').aggregate([
+        const response = await mongo.selectedDb.collection('BookedData').aggregate([
             {
                 $lookup: {
-                    from: 'booking-details',
+                    from: 'Book',
                     localField: 'Date',
                     foreignField: 'Date',
-                    as: 'Booking-Details'
+                    as: 'Book'
                 }
             },
 
@@ -114,13 +114,13 @@ module.exports.getbookingstatus = async (req, res, next) => {
 
 module.exports.getcustomerdata = async (req, res, next) => {
     try {
-        const response = await mongo.selectedDb.collection('booking-status').aggregate([
+        const response = await mongo.selectedDb.collection('BookedData').aggregate([
             {
                 $lookup: {
-                    from: 'booking-details',
+                    from: 'Book',
                     localField: 'Date',
                     foreignField: 'Date',
-                    as: 'Booking-Details'
+                    as: 'Book'
                 }
             },
 
