@@ -1,0 +1,14 @@
+Heroku URL : https://node-js-room-booking.herokuapp.com/
+
+Git-Hub URL : https://github.com/RajeshManoharan92/hall-booking
+
+Router Details:
+
+	'/hall/getroomdetails' 			-> For getting room details,
+	'/hall/getcustomerdata' 		-> For getting customer data, (List all customers with booked data)
+	'/hall/getbookingstatus' 		-> For getting booking status (List all rooms with booked data).
+	'/hall/postcustomerdetails'              -> For Booking a room
+	'/hall/updatecustomerdetails/:id'	-> For updating customer details
+	'/hall/deletecustomerdetails/:id'	-> For deleting customer
+
+localhost PORT no : 3000
